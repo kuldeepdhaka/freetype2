@@ -1,6 +1,6 @@
 /***************************************************************************/
 /*                                                                         */
-/*  ftoption.h                                                             */
+/*  ftoption.h (for development)                                           */
 /*                                                                         */
 /*    User-selectable configuration macros (specification only).           */
 /*                                                                         */
@@ -92,6 +92,8 @@ FT_BEGIN_HEADER
   /* This is done to allow FreeType clients to run unmodified, forcing     */
   /* them to display normal gray-level anti-aliased glyphs.                */
   /*                                                                       */
+
+/* Sheh! */
 /* #define FT_CONFIG_OPTION_SUBPIXEL_RENDERING */
 
 
@@ -148,7 +150,9 @@ FT_BEGIN_HEADER
   /*                                                                       */
   /*   Define this macro if you want to enable this `feature'.             */
   /*                                                                       */
-#define FT_CONFIG_OPTION_USE_LZW
+
+/* Android: Not required */
+/* #define FT_CONFIG_OPTION_USE_LZW */
 
 
   /*************************************************************************/
@@ -163,7 +167,9 @@ FT_BEGIN_HEADER
   /*   Define this macro if you want to enable this `feature'.  See also   */
   /*   the macro FT_CONFIG_OPTION_SYSTEM_ZLIB below.                       */
   /*                                                                       */
-#define FT_CONFIG_OPTION_USE_ZLIB
+
+/* Android: Not required */
+/* #define FT_CONFIG_OPTION_USE_ZLIB */
 
 
   /*************************************************************************/
@@ -184,6 +190,8 @@ FT_BEGIN_HEADER
   /*   Do not #undef this macro here since the build system might define   */
   /*   it for certain configurations only.                                 */
   /*                                                                       */
+
+/* Android: Not required */
 /* #define FT_CONFIG_OPTION_SYSTEM_ZLIB */
 
 
@@ -200,18 +208,9 @@ FT_BEGIN_HEADER
   /*                                                                       */
   /*   Define this macro if you want to enable this `feature'.             */
   /*                                                                       */
+
+/* Android: We do not need this */
 /* #define FT_CONFIG_OPTION_USE_BZIP2 */
-
-
-  /*************************************************************************/
-  /*                                                                       */
-  /* Define to disable the use of file stream functions and types, FILE,   */
-  /* fopen() etc.  Enables the use of smaller system libraries on embedded */
-  /* systems that have multiple system libraries, some with or without     */
-  /* file stream support, in the cases where file stream support is not    */
-  /* necessary such as memory loading of font files.                       */
-  /*                                                                       */
-/* #define FT_CONFIG_OPTION_DISABLE_STREAM_SUPPORT */
 
 
   /*************************************************************************/
@@ -225,6 +224,8 @@ FT_BEGIN_HEADER
   /*                                                                       */
   /*   Define this macro if you want to enable this `feature'.             */
   /*                                                                       */
+
+/* Android: We do not need this */
 /* #define FT_CONFIG_OPTION_USE_PNG */
 
 
@@ -238,7 +239,22 @@ FT_BEGIN_HEADER
   /*                                                                       */
   /*   Define this macro if you want to enable this `feature'.             */
   /*                                                                       */
+
+/* Android: We have ttf, not required */
 /* #define FT_CONFIG_OPTION_USE_HARFBUZZ */
+
+
+  /*************************************************************************/
+  /*                                                                       */
+  /* Define to disable the use of file stream functions and types, FILE,   */
+  /* fopen() etc.  Enables the use of smaller system libraries on embedded */
+  /* systems that have multiple system libraries, some with or without     */
+  /* file stream support, in the cases where file stream support is not    */
+  /* necessary such as memory loading of font files.                       */
+  /*                                                                       */
+
+/* We will use AssetManager to open font on Android */
+#define FT_CONFIG_OPTION_DISABLE_STREAM_SUPPORT
 
 
   /*************************************************************************/
@@ -408,8 +424,12 @@ FT_BEGIN_HEADER
   /*   Do not #undef these macros here since the build system might define */
   /*   them for certain configurations only.                               */
   /*                                                                       */
-/* #define FT_DEBUG_LEVEL_ERROR */
-/* #define FT_DEBUG_LEVEL_TRACE */
+
+/* Android: Enable debugging only if NDEBUG is not set */
+#if !defined(NDEBUG)
+# define FT_DEBUG_LEVEL_ERROR
+# define FT_DEBUG_LEVEL_TRACE
+#endif
 
 
   /*************************************************************************/
@@ -444,7 +464,9 @@ FT_BEGIN_HEADER
   /*   Do not #undef these macros here since the build system might define */
   /*   them for certain configurations only.                               */
   /*                                                                       */
-/* #define FT_DEBUG_AUTOFIT */
+#if !defined(NDEBUG)
+# define FT_DEBUG_AUTOFIT
+#endif
 
 
   /*************************************************************************/
@@ -462,6 +484,8 @@ FT_BEGIN_HEADER
   /*   Do not #undef this macro here since the build system might define   */
   /*   it for certain configurations only.                                 */
   /*                                                                       */
+
+/* Android: defining enviroment variable is trivial */
 /* #define FT_DEBUG_MEMORY */
 
 
@@ -602,7 +626,7 @@ FT_BEGIN_HEADER
   /*   This option requires TT_CONFIG_OPTION_BYTECODE_INTERPRETER to be    */
   /*   defined.                                                            */
   /*                                                                       */
-/* #define TT_CONFIG_OPTION_SUBPIXEL_HINTING */
+#define TT_CONFIG_OPTION_SUBPIXEL_HINTING
 
 
   /*************************************************************************/
@@ -805,6 +829,8 @@ FT_BEGIN_HEADER
   /* switch between the two engines using the `hinting-engine' property of */
   /* the cff driver module.                                                */
   /*                                                                       */
+
+/* Android: We do not need this */
 /* #define CFF_CONFIG_OPTION_OLD_ENGINE */
 
 

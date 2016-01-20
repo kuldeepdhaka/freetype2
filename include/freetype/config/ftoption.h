@@ -191,8 +191,7 @@ FT_BEGIN_HEADER
   /*   it for certain configurations only.                                 */
   /*                                                                       */
 
-/* Android: Not required */
-/* #define FT_CONFIG_OPTION_SYSTEM_ZLIB */
+#define FT_CONFIG_OPTION_SYSTEM_ZLIB
 
 
   /*************************************************************************/
@@ -253,8 +252,7 @@ FT_BEGIN_HEADER
   /* necessary such as memory loading of font files.                       */
   /*                                                                       */
 
-/* We will use AssetManager to open font on Android */
-#define FT_CONFIG_OPTION_DISABLE_STREAM_SUPPORT
+/* #define FT_CONFIG_OPTION_DISABLE_STREAM_SUPPORT */
 
 
   /*************************************************************************/

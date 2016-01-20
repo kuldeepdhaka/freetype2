@@ -29,6 +29,6 @@ LOCAL_CFLAGS :=							\
 	-DFT2_BUILD_LIBRARY=1
 
 LOCAL_MODULE:= freetype2
-LOCAL_LDLIBS:= -lz
+LOCAL_LDLIBS:= -lz -llog
 
 include $(BUILD_SHARED_LIBRARY)

@@ -45,6 +45,10 @@
 #include FT_FREETYPE_H
 #include FT_INTERNAL_DEBUG_H
 
+#if __ANDROID__
+# include <android/log.h>
+# define LOG_TAG "freetype2"
+#endif
 
 #ifdef FT_DEBUG_LEVEL_ERROR
 
@@ -58,7 +62,11 @@
 
 
     va_start( ap, fmt );
+#if __ANDROID__
+    __android_log_vprint(ANDROID_LOG_INFO, LOG_TAG, fmt, ap);
+#else
     vfprintf( stderr, fmt, ap );
+#endif
     va_end( ap );
   }
 
@@ -73,7 +81,11 @@
 
 
     va_start( ap, fmt );
+#if __ANDROID__
+    __android_log_vprint(ANDROID_LOG_ERROR, LOG_TAG, fmt, ap);
+#else
     vfprintf( stderr, fmt, ap );
+#endif
     va_end( ap );
 
     exit( EXIT_FAILURE );

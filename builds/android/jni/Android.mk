@@ -19,7 +19,9 @@ LOCAL_SRC_FILES:= 						\
 	$(REL_PATH)/src/truetype/truetype.c	\
 	$(REL_PATH)/src/smooth/smooth.c		\
 	$(REL_PATH)/src/psnames/psnames.c	\
-	$(REL_PATH)/src/autofit/autofit.c
+	$(REL_PATH)/src/autofit/autofit.c	\
+	$(REL_PATH)/src/base/ftbdf.c			\
+	$(REL_PATH)/src/base/fttype1.c
 
 LOCAL_C_INCLUDES:= $(ABS_PATH)/include
 
